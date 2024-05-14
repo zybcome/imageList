@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>合体字系列壁纸</title>
+  <style>
+    #app {
+      background-color: #000;
+      padding: 1px 0;
+    }
+
+    .imgListItem {
+      width: 95%;
+      margin: 10px auto;
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .imgListItem img {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 16px;
+    }
+
+    .imgListItem p {
+      text-align: center;
+      margin: 0 0 16px 0;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+</head>
+
+<body style="background-color: #000;">
+  <!-- 引入样式文件 -->
+  <div id="app">
+    <template>
+      <van-swipe :autoplay="3000" indicator-color="white" v-for="(imageListItem,indexItem) in imageList">
+        <van-swipe-item v-for="(item,index) in imageListItem">
+          <div class="imgListItem">
+            <img :src="'./img/'+item+'.jpg'" :alt="item" @click="onCliskImg(indexItem,index)">
+            <p><van-tag type="primary" size="large">{{item}}</van-tag></p>
+
+          </div>
+        </van-swipe-item>
+      </van-swipe>
+      <div v-for="(imageListItem,indexItem) in imageList">
+        <van-image-preview v-model="show" v-for="(item,index) in imageListItem" :images="item"
+          @change="onChange(indexItem,index)"></van-image-preview>
+      </div>
+    </template>
+  </div>
+  <!-- 引入 Vue 和 Vant 的 JS 文件 -->
+  <script src="./js/vue.min.js"></script>
+  <script src="./js/vant.min.js"></script>
+
+
+  <script>
+    // 在 #app 标签下渲染一个按钮组件
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          show: false,
+          index: 0,
+          imageListUrl: [],
+          imageListItemUrl: [],
+          imageList: [
+            [
+              "元气少女",
+              "早日脱单"
+            ],
+            [
+              "八方来财",
+              "招财进宝"
+            ]
+          ]
+        }
+      },
+      mounted() {
+        this.imageList.map(res => {
+          this.imageListItemUrl = [];
+          res.map(item => {
+            this.imageListItemUrl.push('./img/' + item + '.jpg')
+          })
+          this.imageListUrl.push(this.imageListItemUrl)
+        })
+      },
+      methods: {
+        onCliskImg(indexItem, index) {
+          vant.ImagePreview({
+            images: this.imageListUrl[indexItem],
+            startPosition: index,
+          });
+        },
+        onChange(indexItem, index) {
+          console.log(indexItem, index)
+        },
+      }
+    });
+    Vue.use(vant.Lazyload);
+  </script>
+</body>
+
+</html>
