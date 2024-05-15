@@ -593,6 +593,8 @@
             let index = that.getRandomInt(0,that.animateArray.length-1)
             // return "animate__infinite animate__animated "+that.animateArray[index]
             return "animate__animated "+that.animateArray[index]
+          }else{
+            return "animate__animated animate__zoomOut"
           }
         },
         getRandomInt(min, max) {
