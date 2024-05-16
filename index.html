@@ -38,15 +38,12 @@
   <!-- 引入样式文件 -->
   <div id="app">
     <template>
-      <van-swipe :autoplay="3000" indicator-color="white" v-for="(imageListItem,indexItem) in imageList">
-        <van-swipe-item v-for="(item,index) in imageListItem">
-          <div class="imgListItem">
-            <img :src="'./img/'+item+'.jpg'" :alt="item" @click="onCliskImg(indexItem,index)">
-            <p><van-tag type="primary" size="large">{{item}}</van-tag></p>
-
-          </div>
-        </van-swipe-item>
-      </van-swipe>
+      <div v-for="(imageListItem,indexItem) in imageList">
+        <div class="imgListItem" v-for="(item,index) in imageListItem">
+          <img :src="'./img/'+item+'.jpg'" :alt="item" @click="onCliskImg(indexItem,index)">
+          <p><van-tag type="primary" size="large">{{item}}</van-tag></p>
+        </div>
+      </div>
       <div v-for="(imageListItem,indexItem) in imageList">
         <van-image-preview v-model="show" v-for="(item,index) in imageListItem" :images="item"
           @change="onChange(indexItem,index)"></van-image-preview>
@@ -70,12 +67,35 @@
           imageListItemUrl: [],
           imageList: [
             [
-              "元气少女",
-              "早日脱单"
-            ],
-            [
+
+              "恭喜发财",
+              "吉祥如意",
+              "五福临门",
+              "金榜题名",
+              "招财进宝",
               "八方来财",
-              "招财进宝"
+              "金玉满堂",
+              "开门见喜",
+              "欢聚一堂",
+              "吉星高照",
+              "四季平安",
+              "春满人间",
+
+
+
+
+              "日富一日",
+              "早日脱单",
+              "元气少女",
+              "熬夜不秃",
+              "人间值得",
+              "未来可期",
+              "水逆退散",
+              "狂吃不胖",
+              "喜大普奔",
+              "富瘦双全",
+              "人生巅峰",
+              "富得流油",
             ]
           ]
         }
