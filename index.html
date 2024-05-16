@@ -30,7 +30,6 @@
       margin: 0 0 16px 0;
     }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="./css/index.css" />
 </head>
 
@@ -40,7 +39,7 @@
     <template>
       <div v-for="(imageListItem,indexItem) in imageList">
         <div class="imgListItem" v-for="(item,index) in imageListItem">
-          <img :src="'./img/'+item+'.jpg'" :alt="item" @click="onCliskImg(indexItem,index)">
+          <img v-lazy="'./img/'+item+'.jpg'" :alt="item" @click="onCliskImg(indexItem,index)">
           <p><van-tag type="primary" size="large">{{item}}</van-tag></p>
         </div>
       </div>
@@ -56,6 +55,7 @@
 
 
   <script>
+    Vue.use(vant.Lazyload);
     // 在 #app 标签下渲染一个按钮组件
     new Vue({
       el: '#app',
@@ -80,9 +80,6 @@
               "吉星高照",
               "四季平安",
               "春满人间",
-
-
-
 
               "日富一日",
               "早日脱单",
@@ -116,12 +113,8 @@
             startPosition: index,
           });
         },
-        onChange(indexItem, index) {
-          console.log(indexItem, index)
-        },
       }
     });
-    Vue.use(vant.Lazyload);
   </script>
 </body>
 
