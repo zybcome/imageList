@@ -39,7 +39,7 @@
     <template>
       <div v-for="(imageListItem,indexItem) in imageList">
         <div class="imgListItem" v-for="(item,index) in imageListItem">
-          <img v-lazy="'./img/'+item+'.jpg'" :alt="item" @click="onCliskImg(indexItem,index)">
+          <img v-lazy="'./img/'+item+'.jpg?v=20240516'" :alt="item" @click="onCliskImg(indexItem,index)">
           <p><van-tag type="primary" size="large">{{item}}</van-tag></p>
         </div>
       </div>
@@ -101,7 +101,7 @@
         this.imageList.map(res => {
           this.imageListItemUrl = [];
           res.map(item => {
-            this.imageListItemUrl.push('./img/' + item + '.jpg')
+            this.imageListItemUrl.push('./img/' + item + '.jpg?v=20240516')
           })
           this.imageListUrl.push(this.imageListItemUrl)
         })
