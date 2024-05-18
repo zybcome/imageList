@@ -39,7 +39,7 @@
     <template>
       <div v-for="(imageListItem,indexItem) in imageList">
         <div class="imgListItem" v-for="(item,index) in imageListItem">
-          <img v-lazy="'./img/'+item+'.jpg?v=20240517'" :alt="item" @click="onCliskImg(indexItem,index)">
+          <img v-lazy="'./img/'+item+'.jpg?v='+imgVersion" :alt="item" @click="onCliskImg(indexItem,index)">
           <p><van-tag type="primary" size="large">{{item}}</van-tag></p>
         </div>
       </div>
@@ -61,6 +61,7 @@
       el: '#app',
       data() {
         return {
+          imgVersion:"2024051713",
           show: false,
           index: 0,
           imageListUrl: [],
@@ -101,7 +102,7 @@
         this.imageList.map(res => {
           this.imageListItemUrl = [];
           res.map(item => {
-            this.imageListItemUrl.push('./img/' + item + '.jpg?v=20240516')
+            this.imageListItemUrl.push('./img/' + item + '.jpg?v='+this.imgVersion)
           })
           this.imageListUrl.push(this.imageListItemUrl)
         })
